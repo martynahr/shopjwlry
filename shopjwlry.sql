@@ -11,10 +11,12 @@ name_us TEXT not null,
     primary key (Id_user)
     );
     describe users;
+
 CREATE TABLE Login (
     id_user INT,
     login TEXT not null,
     pass TEXT not null,
+    role text not null,
     foreign key (id_user) references USERS(id_user)
 );
 select* from login;
@@ -62,24 +64,23 @@ insert into Users (name_us, surname, city, email, mobile) values
 ( 'Kasia', 'Morela', 'Lublin', 'kmorela@abc.pl', 978645312),
 ( 'Gabriela', 'Porzeczka','Warszawa','gporzeczka@def.pl', 456789234),
 ( 'Ewa', 'Len', 'Bialystok', 'elen@abc.pl', 234765983 ),
-( 'Ewelina','Cebula','Opole','ecebula@def.pl9', 345789321);
-insert into Users values
+( 'Ewelina','Cebula','Opole','ecebula@def.pl9', 345789321),
 ( 'Admin', 'Admin', 'world', 'admin@shopjwlry.com', 102030405);
 select * from Users; 
+delete from users where id_user=19;
 insert into login values
-(1, 'adamkw', 'kotek123'),
-(2, 'kamilgr','chomik456'),
-(3, 'ryszardpi','swinka658'),
-(4, 'norbertka','robak325'),
-(5, 'jacekpo','pies983'),
-(6, 'michalog','wrobel652'),
-(7, 'annatr','mysz546'),
-(8, 'kasiamo','mucha902'),
-(9, 'gabrielapo','szczur379'),
-(10, 'ewale','rys561'),
-(11, 'ewelinace','bobr320');
-insert into login values
-(12, 'admin', 'admin');
+(1, 'adamkw', 'kotek123','user'),
+(2, 'kamilgr','chomik456','user'),
+(3, 'ryszardpi','swinka658','user'),
+(4, 'norbertka','robak325','user'),
+(5, 'jacekpo','pies983','user'),
+(6, 'michalog','wrobel652','user'),
+(7, 'annatr','mysz546','user'),
+(8, 'kasiamo','mucha902','user'),
+(9, 'gabrielapo','szczur379','user'),
+(10, 'ewale','rys561','user'),
+(11, 'ewelinace','bobr320','user'),
+(12, 'admin', 'admin','admin');
 select * from login; 
 insert into Products values 
 (1, 'ring', '0,15', 'silver', 750, 630, 15),
@@ -152,6 +153,7 @@ CREATE VIEW users_orders AS
         orders
             NATURAL LEFT JOIN
         products;
+    
 	select * from users_orders;
   
     drop view users_orders;
